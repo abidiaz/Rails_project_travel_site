@@ -1,0 +1,9 @@
+<h1>Show Page for Country</h1>
+
+<h1>Pick your City to visit</h1>
+
+
+
+<% @country.cities.each do |city| %>
+  <%= link_to city.name, city_path(city) %><br>
+  <% end %>

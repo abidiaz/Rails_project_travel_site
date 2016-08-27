@@ -1,0 +1,13 @@
+<h1>What country would you like to junket to?</h1>
+
+Country: 
+<br>
+<% @countries.each do |country| %>
+<%= link_to country.name, country_path(country) %>
+<% end %>
+
+<!-- 
+<%= form_for @countries.name do |f| %>
+<%= f.collection_select(:country_id, Country.all, :id, :name, prompt: true) %>
+<%= f.submit %>
+<% end %> -->

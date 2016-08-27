@@ -1,0 +1,10 @@
+<h1>You're in <%= @city.name %>, and these are the attractions Show Page</h1>
+
+<h1>Pick your Attraction</h1>
+
+<% @city.attractions.each do |attraction| %>
+  <%= link_to attraction.name, attraction_path(attraction) %>
+  <% end %>
+  <br>
+Add a new attraction here if you like:
+  <%= render partial: 'attractions/form', locals: {attraction: @city.attractions.build} %>
