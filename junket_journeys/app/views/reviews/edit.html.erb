@@ -1,2 +1,9 @@
-<h1>Reviews#edit</h1>
-<p>Find me in app/views/reviews/edit.html.erb</p>
+<h3>Edit Your Review of <%= @review.attraction.name %></h3>
+<%= form_for @review do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content %><br>
+  <%= f.label :rating %>
+  <%= f.text_field :rating %><br>
+  <%=f.submit  %>
+<% end %>
+<%= button_to 'Delete', delete_review_path(@review), :confirm => 'Are you sure?', :method => :delete %>

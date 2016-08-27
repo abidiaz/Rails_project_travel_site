@@ -1,2 +1,22 @@
-<h1>Attractions#show</h1>
-<p>Find me in app/views/attractions/show.html.erb</p>
+<h1><%= @attraction.name%></h1>
+<p><%= @attraction.address %></p>
+<p><%= @attraction.contact_info%></p>
+
+<% @attraction.reviews.each do |review| %>
+  <%= review.content  %> <br>
+  <%= review.rating  %> <br>
+  <% if current_user.id == review.user_id %>
+    <%= button_to 'Edit Review', edit_review_path(review), method: :get%>
+  <% end %>
+<% end %>
+<% if logged_in? %>
+  <%= form_for @attraction.reviews.build do |f| %>
+    <%= f.label :content %>
+    <%= f.text_field :content %><br>
+    <%= f.label :rating %>
+    <%= f.text_field :rating %><br>
+    <%= f.hidden_field :attraction_id, value: @attraction.id  %>
+    <%= f.hidden_field :user_id, value: session[:user_id]  %>
+    <%=f.submit  %>
+  <% end %>
+<% end %>

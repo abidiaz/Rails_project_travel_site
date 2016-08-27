@@ -6,6 +6,17 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <h1>Junket Journeys</h1>
+    <% if logged_in? %>
+      <div align="right">
+        <%= link_to 'Sign Out', signout_path %>
+      </div>
+    <% else %>
+      <div align="right">
+        <%= link_to 'Sign Up', signup_path  %> <br>
+        <%= link_to 'Sign In', signin_path  %>
+      </div>
+    <% end %>
   </head>
 
   <body>

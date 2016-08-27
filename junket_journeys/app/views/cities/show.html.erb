@@ -6,5 +6,9 @@
   <%= link_to attraction.name, attraction_path(attraction) %>
   <% end %>
   <br>
-Add a new attraction here if you like:
-  <%= render partial: 'attractions/form', locals: {attraction: @city.attractions.build} %>
+<% if logged_in? %>  
+  Add a new attraction here if you like:
+    <%= render partial: 'attractions/form', locals: {attraction: @city.attractions.build} %>
+<% else %> 
+  <p>Sign in or Sign up to add your own reviews! </p>
+<% end %>

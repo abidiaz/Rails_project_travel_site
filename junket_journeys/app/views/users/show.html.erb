@@ -1,2 +1,23 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>Hi <%= @user.name %> ! </h1>
+<p>Welcome ot your user profile</p>
+
+<!-- <h3>Your Locations</h3>
+<% if !@user.attractions.empty? %>
+  <% @user.attractions.each do |attraction| %>
+    <%= link_to attraction.name, attraction_path(attraction) %>
+  <% end %>
+<% else %>  
+  <p>No locations visited!</p>
+<% end %> -->
+
+<h3>Your Reviews</h3>
+<% if !@user.reviews.empty? %>
+  <% @user.reviews.each do |review| %>
+    <%= link_to review.attraction.name, attraction_path(review.attraction) %> <br>
+    <%= review.content  %> <br>
+    <%= link_to 'Edit Review', edit_review_path(review)  %> <br>
+  <% end %>
+<% else %>
+  <p>You have not written any reviews!</p>
+<% end %>
+

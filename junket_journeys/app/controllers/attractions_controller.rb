@@ -14,10 +14,13 @@ class AttractionsController < ApplicationController
   def create
     @attraction = Attraction.new(attractions_params)
     if @attraction.save
-    redirect_to attractions_path
-  else
-    render 'form'
-  end
+      @review = Review.new(review_params[:review])
+      @review.attraction = @attraction
+      @attraction.reviews << @review
+      redirect_to attractions_path
+    else
+      render 'form'
+    end
   end
 
   def edit
@@ -32,12 +35,12 @@ class AttractionsController < ApplicationController
 private
 
 def attractions_params
-  params.require(:attraction).permit(:name, :address, :contact_info,  :city_id) #review: [:content, :rating])
+  params.require(:attraction).permit(:name, :address, :contact_info,:city_id) 
 end
 
-# def reviews_params
-#   params.require(:review).permit(:content, :rating)
-# end
+def review_params
+  params.require(:attraction).permit(review:[:content, :rating,:user_id])
+end
 
 def set_attraction_id
   @attraction = Attraction.find(params[:id])
