@@ -1,14 +1,27 @@
 <h1><%= @attraction.name%></h1>
-<p><%= @attraction.address %></p>
-<p><%= @attraction.contact_info%></p>
+<p><b> Address:</b>  <%= @attraction.address %></p>
+<p><b>Contact Info:</b> <%= @attraction.contact_info%></p>
 
+<h3>Reviews</h3>
 <% @attraction.reviews.each do |review| %>
-  <%= review.content  %> <br>
-  <%= review.rating  %> <br>
-  <% if current_user.id == review.user_id %>
-    <%= button_to 'Edit Review', edit_review_path(review), method: :get%>
+  Review :
+  "<%= review.content  %>" <br>
+  Rating: <%= review.rating  %> <br>
+
+  <% if logged_in? %>
+    <% if current_user.id == review.user_id %>
+      <%= button_to 'Edit Review', edit_review_path(review), method: :get%>
+    <% end %>
   <% end %>
+  <hr>
 <% end %>
+
+<% if !flash[:error].nil? && !flash[:error].empty?  %>
+ <% flash[:error].each do |message| %>
+  <li> <%=  message  %> </li>
+ <% end %>
+<% end %>
+
 <% if logged_in? %>
   <%= form_for @attraction.reviews.build do |f| %>
     <%= f.label :content %>

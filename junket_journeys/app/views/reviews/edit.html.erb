@@ -1,9 +1,3 @@
 <h3>Edit Your Review of <%= @review.attraction.name %></h3>
-<%= form_for @review do |f| %>
-  <%= f.label :content %>
-  <%= f.text_field :content %><br>
-  <%= f.label :rating %>
-  <%= f.text_field :rating %><br>
-  <%=f.submit  %>
-<% end %>
+<%= render partial: 'form', locals: {review: @review}  %>
 <%= button_to 'Delete', delete_review_path(@review), :confirm => 'Are you sure?', :method => :delete %>

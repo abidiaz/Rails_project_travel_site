@@ -16,10 +16,18 @@ class AttractionsController < ApplicationController
     if @attraction.save
       @review = Review.new(review_params[:review])
       @review.attraction = @attraction
-      @attraction.reviews << @review
-      redirect_to attractions_path
+      if @review.save
+        @attraction.reviews << @review
+        redirect_to attraction_path(@attraction)
+      else
+        flash[:error] = @review.errors.full_messages
+        redirect_to attraction_path(@attraction)
+        # render partial:'form', locals: {attraction: @attraction}
+      end 
     else
-      render 'form'
+      flash[:error] = @attraction.errors.full_messages
+      redirect_to city_path(@attraction.city)
+      # render partial:'form', locals: {attraction: @attraction}
     end
   end
 

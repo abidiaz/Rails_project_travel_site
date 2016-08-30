@@ -16,7 +16,8 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to attraction_path(@review.attraction)
     else
-      render 'new'
+      flash[:error] = @review.errors.messages
+      redirect_to attraction_path(@review.attraction)
     end
   end
 
