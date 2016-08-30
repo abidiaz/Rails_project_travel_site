@@ -1,14 +1,25 @@
-<h1>You're in <%= @city.name %>, and these are the attractions Show Page</h1>
+<h1>You're in <%= @city.name %></h1>
+
 
 <h1>Pick your Attraction</h1>
 
 <% @city.attractions.each do |attraction| %>
-  <%= link_to attraction.name, attraction_path(attraction) %>
+ <li> <%= link_to attraction.name, attraction_path(attraction) %> </li>
   <% end %>
   <br>
-<% if logged_in? %>  
-  Add a new attraction here if you like:
-    <%= render partial: 'attractions/form', locals: {attraction: @city.attractions.build} %>
+
+
+<% if !flash[:error].nil? && !flash[:error].empty?  %>
+ <% flash[:error].each do |message| %>
+  <li> <%=  message  %> </li>
+ <% end %>
+<% end %>
+
+<% if logged_in? %>
+  Add a new attraction here if you like: <br>
+  <div class= "col-md-2">  
+      <%= render partial: 'attractions/form', locals: {attraction: @city.attractions.build} %>
+  </div>  
 <% else %> 
   <p>Sign in or Sign up to add your own reviews! </p>
 <% end %>

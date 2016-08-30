@@ -1,23 +1,23 @@
-<h1>Hi <%= @user.name %> ! </h1>
-<p>Welcome ot your user profile</p>
-
-<!-- <h3>Your Locations</h3>
-<% if !@user.attractions.empty? %>
-  <% @user.attractions.each do |attraction| %>
-    <%= link_to attraction.name, attraction_path(attraction) %>
-  <% end %>
-<% else %>  
-  <p>No locations visited!</p>
-<% end %> -->
-
+<h1>Hi <%= @user.name.capitalize %> ! </h1>
+<p>Welcome to your user profile</p>
+<div align= "left">
+  <a href="/users/<%= session[:user_id]%>/edit" class="btn btn-warning" role="button">Edit Your Profile</a>
+  <a data-method="delete" href="/users/<%= session[:user_id]%>" class="btn btn-danger" role="button">Destroy Yourself</a>
+</div>
 <h3>Your Reviews</h3>
 <% if !@user.reviews.empty? %>
   <% @user.reviews.each do |review| %>
+    <b>Attraction:</b>
     <%= link_to review.attraction.name, attraction_path(review.attraction) %> <br>
+    <b>You said:</b>
     <%= review.content  %> <br>
-    <%= link_to 'Edit Review', edit_review_path(review)  %> <br>
+    <b>Rating:</b>
+    <%= review.rating  %>
+    <%= button_to 'Edit Review', edit_review_path(review)  %> <br>
+    <hr>
   <% end %>
 <% else %>
   <p>You have not written any reviews!</p>
 <% end %>
+
 

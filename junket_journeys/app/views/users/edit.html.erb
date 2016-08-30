@@ -1,2 +1,4 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>Update your User Profile</h1>
+
+<h3>Enter a new username and/or password</h3>
+<%= render partial: 'form', locals: {user: @user} %>
