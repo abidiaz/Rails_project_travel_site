@@ -20,7 +20,7 @@ This application is a simple travel recommendation site designed to help users f
 
 1. Clone down the latest repo from Rails_project_travel_site. 
 2. CD into Rails_project_travel_site/junket_journeys directory
-3. Run rake db:migrate to establish the database, and rake db:seed to populate the data. 
+3. Run "rake db:migrate" to establish the database, and "rake db:seed" to populate the data. 
 4. Start the server using "rails s" and open your browser to localhost:3000. 
 
 
