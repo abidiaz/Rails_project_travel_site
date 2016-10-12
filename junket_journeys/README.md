@@ -10,11 +10,10 @@ This application is a simple travel recommendation site designed to help users f
 - Users can read reviews for each attraction or create a new one in the form provided. 
 
 <h3>Technical Specs:</h3>
-- Developed using Ruby  
+- Developed using Ruby on Rails 5
 - Integrated with bcrypt gem for user authentication
 - Bootstrap CSS front-end
 - SQLite3 database
-- Rails 5
 
 <h3>To run the program, follow these steps:</h3> 
 
